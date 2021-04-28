@@ -1,0 +1,24 @@
+DAO/LoginDAO.java
+ DAO.LoginDAO
+Menu/Prestador/ListarVendasMenu.java
+ Menu.Prestador.ListarVendasMenu
+Menu/Consumidor/ListarComprasMenu.java
+ Menu.Consumidor.ListarComprasMenu
+DAO/Prestador/ListarVendasDAO.java
+ DAO.Prestador.ListarVendasDAO
+DAO/Prestador/FinalizarVendaDAO.java
+ DAO.Prestador.FinalizarVendaDAO
+db/ConnectionFactory.java
+ db.ConnectionFactory
+DAO/Consumidor/ListarComprasDAO.java
+ DAO.Consumidor.ListarComprasDAO
+entities/Usuario.java
+ entities.Usuario
+Menu/Consumidor/CompraMenu.java
+ Menu.Consumidor.CompraMenu
+DAO/Consumidor/CompraDAO.java
+ DAO.Consumidor.CompraDAO
+Menu/Prestador/FinalizarVendaMenu.java
+ Menu.Prestador.FinalizarVendaMenu
+Principal.java
+ Principal

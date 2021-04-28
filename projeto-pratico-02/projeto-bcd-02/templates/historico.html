@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+
+    <div class="row">
+
+        <div class="col-md-4 login-form col-offset-2" style="border-style: inset;border-color: palevioletred;">
+
+            <h3 style="text-align: center">Dados do Paciente</h3> <br>
+
+            <ul id="ulist" class="list-group">
+
+                {% if paciente%}
+                    <p> Nome: {{ paciente.nome }} </p>
+                    <p> CPF: {{ paciente.cpf }} </p>
+                    <p> Nascimento: {{ paciente.nascimento.strftime('%d/%m/%Y') }} </p>
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+
+        <div class="col-md-4 login-form col-offset-2" style="border-style: inset;border-color: palevioletred;">
+            <h3 style="text-align: center">Próximas doses</h3> <br>
+
+           {% if proximas %}
+                  <table class="table table-striped">
+                     <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center">Vacina</th>
+                            <th scope="col" style="text-align: center">Data</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                             {% for p in proximas %}
+                                 <tr>
+                                     <td style="text-align: center">{{ p[0] }}</td>
+                                     <td style="text-align: center" >{{ p[1].strftime('%d/%m/%Y') }}</td>
+                                </tr>
+                             {% endfor %}
+                     </tbody>
+                 </table>
+
+           {% else %}
+                <h5 style="text-align: center"> O paciente não possui nada agendado.</h5>
+           {% endif %}
+
+        </div>
+
+         <div class="col-md-4 login-form col-offset-2" style="border-style: inset;border-color: palevioletred;">
+             <h3  style="text-align: center">Vacinas pendentes na sua faixa etária</h3> <br>
+
+             {% if vacinas_geral %}
+                 <table class="table table-striped">
+                     <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center">Vacina</th>
+                            <th scope="col" style="text-align: center">Dose</th>
+                             <th scope="col" style="text-align: center"> </th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                            {% for v, d in dadosvacina %}
+                                <tr>
+                                    <td style="text-align: center">
+                                        {{ v.nome }}
+
+                                    </td>
+                                    <td style="text-align: center">
+                                        {{ d }}
+                                    </td>
+                                    <td>
+                                        <a href="/vacinacao?idVacinaGeral={{ v.id }}"><span class="fas fa-syringe"></span></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                     </tbody>
+                 </table>
+             {% else %}
+                <h5 style="text-align: center"> Nenhuma vacina pendente para a sua faixa etária.</h5>
+             {% endif %}
+         </div>
+    </div>
+
+    </br>
+
+         <h3 style="text-align: center">Histórico</h3>  <br>
+
+             {% if historico %}
+                  <table class="table table-striped">
+                     <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center">Vacina Geral</th>
+                             <th scope="col" style="text-align: center">Vacina</th>
+                            <th scope="col" style="text-align: center">Local</th>
+                            <th scope="col" style="text-align: center">Data</th>
+                            <th scope="col" style="text-align: center">Dose</th>
+                            <th scope="col" style="text-align: center">Dose Total</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                             {% for h in historico %}
+                                 <tr>
+                                     <td style="text-align: center">{{ h[0] }}</td>
+                                     <td style="text-align: center">{{ h[3] }}</td>
+                                     <td style="text-align: center" >{{ h[1] }}</td>
+                                     <td style="text-align: center" >{{ h[2].strftime('%d/%m/%Y') }}</td>
+                                     <td style="text-align: center" >{{ h[4] }}</td>
+                                     <td style="text-align: center" >{{ h[5] }}</td>
+                                </tr>
+                             {% endfor %}
+                     </tbody>
+                 </table>
+
+             {% else %}
+                <h5 style="text-align: center"> O paciente não possui nenhum histórico.</h5>
+             {% endif %}
+
+
+{% endblock %}
+

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+        <div class="row">
+            <div class="col-md-4" display="none"></div>
+            <div class="col-md-4 login-form" style="border-style: inset;border-color: lightgreen;">
+                <h3 style="text-align: center">Selecione o ano do esquema básico de vacinação</h3>
+                <div class="form-group">
+                    {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+            <div class="col-md-4" display="none"></div>
+        </div>
+
+        {% if dados %}
+            <table class="table table-striped">
+                     <thead>
+                        <tr>
+                            <th scope="col" style="text-align: center">Vacina</th>
+                            <th scope="col" style="text-align: center">Doenças evitadas</th>
+                            <th scope="col" style="text-align: center">Faixa etária</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                            {% for v,dvg,f in dados %}
+                                <tr style="text-align: center">
+                                    <td>{{ v.nome }}</td>
+                                    <td>{{ dvg }}</td>
+                                    <td>{{ f }}</td>
+                                </tr>
+                            {% endfor %}
+                     </tbody>
+                 </table>
+        {% endif %}
+
+{% endblock %}
